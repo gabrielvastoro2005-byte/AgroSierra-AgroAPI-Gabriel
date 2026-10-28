@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: AgroAPI
+  datasource:
+    url: ${DB_URL:jdbc:oracle:thin:@//localhost:1523/FREEPDB1}
+    username: ${DB_USERNAME:AGRODB}
+    password: ${DB_PASSWORD:AgroDb_2026_Secret}
+    driver-class-name: oracle.jdbc.OracleDriver
+  jpa:
+    database-platform: org.hibernate.dialect.OracleDialect
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: false
+  jackson:
+    default-property-inclusion: non_null
+
+server:
+  port: 8080
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:QWdyb1NpZXJyYV9sb2NhbF9leGFtZW5fMjAyNl9qd3Rfa2V5XzMyX2J5dGVzX2xvbmc=}
+    expiracion-minutos: 60
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+logging:
+  level:
+    org.hibernate.SQL: WARN
+    org.springframework.web: INFO
